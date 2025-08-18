@@ -25,20 +25,56 @@ typedef void FlareCompletedCallback(String name);
 ///  * [FlareActor.bundle], for obtaining a Flare from an [AssetBundle].
 ///  * [FlareActor.memory], for obtaining a Flare from a [Uint8List].
 class FlareActor extends LeafRenderObjectWidget {
+  /// Name of the Flare file to be loaded from the AssetBundle.
   final String? filename;
+
+  /// The Flare asset to display.
   final AssetProvider? flareProvider;
+
+  /// The name of the artboard to display.
   final String? artboard;
+
+  /// The name of the animation to play.
   final String? animation;
+
+  /// When true, the animation will be applied at the end of its duration.
   final bool snapToEnd;
+
+  /// The BoxFit strategy used to scale the Flare content into the
+  /// bounds of this widget.
   final BoxFit fit;
+
+  /// The alignment that will be applied in conjuction to the [fit] to align
+  /// the Flare content within the bounds of this widget.
   final Alignment alignment;
+
+  /// When true, animations do not advance.
   final bool isPaused;
+
+  /// When true, the Flare content will be clipped against the bounds of this
+  /// widget.
   final bool shouldClip;
+
+  /// The [FlareController] used to drive animations/mixing/procedural hierarchy
+  /// manipulation of the Flare contents.
   final FlareController? controller;
+
+  /// Callback invoked when [animation] has completed. If [animation] is looping
+  /// this callback is never invoked.
   final FlareCompletedCallback? callback;
+
+  /// The color to override any fills/strokes with.
   final Color? color;
+
+  /// The name of the node to use to determine the bounds of the content.
+  /// When null it will default to the bounds of the artboard.
   final String? boundsNode;
+
+  /// When true the intrinsic size of the artboard will be used as the
+  /// dimensions of this widget.
   final bool sizeFromArtboard;
+
+  /// When false disables antialiasing on drawables.
   final bool antialias;
 
   const FlareActor(
