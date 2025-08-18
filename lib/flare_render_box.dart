@@ -95,14 +95,17 @@ abstract class FlareRenderBox extends RenderBox {
   @override
   void detach() {
     super.detach();
-    dispose();
+    updatePlayState();
   }
 
   @override
   void dispose() {
-    super.dispose();
-    updatePlayState();
+    if (_frameCallbackID != -1) {
+      SchedulerBinding.instance.cancelFrameCallbackWithId(_frameCallbackID);
+      _frameCallbackID = -1;
+    }
     _unload();
+    super.dispose();
   }
 
   /// Load a flare file from cache
